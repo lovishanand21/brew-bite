@@ -32,7 +32,7 @@ Follow these steps to run the project locally:
 
 1.  **Clone the repository**
     ```bash
-    git clone <your-rrl>
+    git clone https://github.com/lovishanand21/brew-bite
     cd brew-bite-showcase
     ```
 
