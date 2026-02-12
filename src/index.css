@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 30 33% 96%;
+    --foreground: 24 10% 15%;
+
+    --card: 30 25% 93%;
+    --card-foreground: 24 10% 15%;
+
+    --popover: 30 33% 96%;
+    --popover-foreground: 24 10% 15%;
+
+    --primary: 24 60% 30%;
+    --primary-foreground: 30 33% 96%;
+
+    --secondary: 30 25% 88%;
+    --secondary-foreground: 24 10% 15%;
+
+    --muted: 30 20% 90%;
+    --muted-foreground: 24 8% 45%;
+
+    --accent: 25 80% 55%;
+    --accent-foreground: 30 33% 96%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 30 20% 85%;
+    --input: 30 20% 85%;
+    --ring: 24 60% 30%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 30 25% 93%;
+    --sidebar-foreground: 24 10% 15%;
+    --sidebar-primary: 24 60% 30%;
+    --sidebar-primary-foreground: 30 33% 96%;
+    --sidebar-accent: 30 20% 90%;
+    --sidebar-accent-foreground: 24 10% 15%;
+    --sidebar-border: 30 20% 85%;
+    --sidebar-ring: 24 60% 30%;
+
+    --cafe-warm: 35 40% 50%;
+    --cafe-cream: 38 50% 92%;
+    --cafe-espresso: 20 30% 18%;
+  }
+
+  .dark {
+    --background: 20 15% 10%;
+    --foreground: 30 20% 90%;
+
+    --card: 20 15% 14%;
+    --card-foreground: 30 20% 90%;
+
+    --popover: 20 15% 14%;
+    --popover-foreground: 30 20% 90%;
+
+    --primary: 25 70% 55%;
+    --primary-foreground: 20 15% 10%;
+
+    --secondary: 20 15% 18%;
+    --secondary-foreground: 30 20% 90%;
+
+    --muted: 20 10% 20%;
+    --muted-foreground: 30 15% 60%;
+
+    --accent: 25 80% 55%;
+    --accent-foreground: 20 15% 10%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 20 10% 22%;
+    --input: 20 10% 22%;
+    --ring: 25 70% 55%;
+
+    --sidebar-background: 20 15% 10%;
+    --sidebar-foreground: 30 20% 90%;
+    --sidebar-primary: 25 70% 55%;
+    --sidebar-primary-foreground: 20 15% 10%;
+    --sidebar-accent: 20 10% 20%;
+    --sidebar-accent-foreground: 30 20% 90%;
+    --sidebar-border: 20 10% 22%;
+    --sidebar-ring: 25 70% 55%;
+
+    --cafe-warm: 35 40% 50%;
+    --cafe-cream: 38 20% 20%;
+    --cafe-espresso: 30 20% 90%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24;
+  }
+
+  .container-cafe {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
