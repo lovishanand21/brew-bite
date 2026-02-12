@@ -1,5 +1,5 @@
 import { motion, type Variants } from "framer-motion";
-import { type ReactNode } from "react";
+import React, { type ReactNode } from "react";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -71,14 +71,16 @@ export const StaggerReveal = ({ children, className, once = true }: StaggerProps
 export const StaggerItem = ({
   children,
   className,
+  ...props
 }: {
   children: ReactNode;
   className?: string;
-}) => (
+} & React.HTMLAttributes<HTMLDivElement>) => (
   <motion.div
     variants={fadeUp}
     transition={{ duration: 0.5, ease: "easeOut" }}
     className={className}
+    {...props}
   >
     {children}
   </motion.div>

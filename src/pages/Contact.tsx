@@ -1,15 +1,41 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { MapPin, Phone, Clock, Mail } from "lucide-react";
 import { toast } from "sonner";
 import { Reveal, StaggerReveal, StaggerItem } from "@/components/MotionReveal";
 
 const Contact = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Message sent! We'll get back to you soon. ☕");
-    setForm({ name: "", email: "", message: "" });
+    setIsSubmitting(true);
+
+    const formData = new FormData(e.target as HTMLFormElement);
+    // Values from state are also in the form inputs, so FormData captures them.
+    // Ensure hidden fields (access_key, subject, from_name) are present in the form JSX.
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        toast.success("Message sent! We'll get back to you soon. ☕");
+        setForm({ name: "", email: "", message: "" });
+      } else {
+        toast.error("Error: " + data.message);
+      }
+    } catch (error) {
+      toast.error("Something went wrong. Please try again.");
+      console.error("Submission error:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -32,9 +58,15 @@ const Contact = () => {
             {/* Form */}
             <Reveal delay={0.1}>
               <form onSubmit={handleSubmit} className="space-y-5">
+                <input type="hidden" name="access_key" value="1db49e0b-d664-4e54-b2e2-7f1a742c7a05" />
+                <input type="hidden" name="subject" value="✨ New Premium Inquiry - Brew & Bite Cafe" />
+                <input type="hidden" name="from_name" value="Brew & Bite Website" />
+
                 <div>
-                  <label className="block text-sm font-medium mb-1.5">Name</label>
+                  <label className="block text-sm font-medium mb-1.5" htmlFor="name">Name</label>
                   <input
+                    id="name"
+                    name="name"
                     type="text"
                     required
                     value={form.name}
@@ -44,8 +76,10 @@ const Contact = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-1.5">Email</label>
+                  <label className="block text-sm font-medium mb-1.5" htmlFor="email">Email</label>
                   <input
+                    id="email"
+                    name="email"
                     type="email"
                     required
                     value={form.email}
@@ -55,8 +89,10 @@ const Contact = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-1.5">Message</label>
+                  <label className="block text-sm font-medium mb-1.5" htmlFor="message">Message</label>
                   <textarea
+                    id="message"
+                    name="message"
                     required
                     rows={5}
                     value={form.message}
@@ -67,9 +103,10 @@ const Contact = () => {
                 </div>
                 <button
                   type="submit"
-                  className="w-full py-3.5 bg-accent text-accent-foreground rounded-lg font-semibold hover:opacity-90 transition-opacity"
+                  disabled={isSubmitting}
+                  className="w-full py-3.5 bg-accent text-accent-foreground rounded-lg font-semibold hover:opacity-90 transition-opacity disabled:opacity-70 disabled:cursor-not-allowed flex justify-center items-center"
                 >
-                  Send Message
+                  {isSubmitting ? "Sending..." : "Send Message"}
                 </button>
               </form>
             </Reveal>

@@ -18,7 +18,7 @@ const CartDrawer = () => {
 
   const handleOrder = () => {
     toast.success("Order placed successfully! 🎉", {
-      description: `${totalItems} item(s) for $${totalPrice.toFixed(2)}. Thank you!`,
+      description: `${totalItems} item(s) for ₹${totalPrice}. Thank you!`,
     });
     clearCart();
     setIsCartOpen(false);
@@ -69,7 +69,7 @@ const CartDrawer = () => {
                   <div className="flex-1 min-w-0">
                     <h4 className="font-medium text-sm truncate">{item.name}</h4>
                     <p className="text-accent font-semibold text-sm mt-0.5">
-                      ${item.price.toFixed(2)}
+                      ₹{item.price}
                     </p>
                     <div className="flex items-center gap-2 mt-2">
                       <button
@@ -103,7 +103,7 @@ const CartDrawer = () => {
               <div className="flex justify-between items-center">
                 <span className="text-muted-foreground font-medium">Total</span>
                 <span className="text-xl font-display font-bold">
-                  ${totalPrice.toFixed(2)}
+                  ₹{totalPrice}
                 </span>
               </div>
               <button

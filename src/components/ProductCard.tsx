@@ -43,7 +43,7 @@ const ProductCard = ({ item }: ProductCardProps) => {
         </div>
         <div className="flex items-center justify-between mt-4">
           <span className="text-lg font-bold text-accent">
-            ${item.price.toFixed(2)}
+            ₹{item.price}
           </span>
           <button
             onClick={handleAdd}
